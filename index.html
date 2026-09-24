@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Приглашение на собеседование</title>
+    <style>
+        :root { color-scheme: light; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f2ff 0%, #fef6e8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+        .wrap {
+            display: flex;
+            gap: 24px;
+            max-width: 900px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        .panel {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 32px;
+            flex: 1 1 320px;
+        }
+        h1 {
+            color: #d2691e;
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+        label {
+            display: block;
+            font-size: 13px;
+            color: #555;
+            font-weight: bold;
+            margin-bottom: 4px;
+            margin-top: 14px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background: #d2691e;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover { background: #b8580f; }
+
+        .card h2 {
+            color: #d2691e;
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .detail:last-of-type { border-bottom: none; }
+        .detail-name { color: #333; font-weight: bold; }
+        .detail-value { color: #1a5fa8; font-weight: bold; text-align: right; }
+        .status {
+            margin-top: 20px;
+            padding: 12px;
+            background: #eafaf0;
+            border-radius: 10px;
+            text-align: center;
+            color: #1a7a3c;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .footer {
+            margin-top: 16px;
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="panel">
+            <h1>✏️ Заполни данные</h1>
+            <form id="inviteForm">
+                <label>Вакансия</label>
+                <input type="text" id="position" value="HR-специалист">
+
+                <label>Дата и время</label>
+                <input type="text" id="datetime" value="Пятница, 15:00">
+
+                <label>Формат</label>
+                <select id="format">
+                    <option>Видеозвонок (Zoom)</option>
+                    <option>Видеозвонок (Google Meet)</option>
+                    <option>Очно в офисе</option>
+                    <option>Телефонный звонок</option>
+                </select>
+
+                <label>Длительность</label>
+                <input type="text" id="duration" value="~45 минут">
+
+                <label>Интервьюер</label>
+                <input type="text" id="interviewer" value="Руководитель отдела HR">
+
+                <button type="submit">Обновить приглашение</button>
+            </form>
+        </div>
+
+        <div class="panel card">
+            <h2>📅 Приглашение на собеседование</h2>
+            <p class="subtitle">Здравствуйте! Будем рады видеть вас на встрече.</p>
+
+            <div class="detail">
+                <span class="detail-name">Вакансия</span>
+                <span class="detail-value" id="out-position">HR-специалист</span>
+            </div>
+            <div class="detail">
+                <span class="detail-name">Дата и время</span>
+                <span class="detail-value" id="out-datetime">Пятница, 15:00</span>
+            </div>
+            <div class="detail">
+                <span class="detail-name">Формат</span>
+                <span class="detail-value" id="out-format">Видеозвонок (Zoom)</span>
+            </div>
+            <div class="detail">
+                <span class="detail-name">Длительность</span>
+                <span class="detail-value" id="out-duration">~45 минут</span>
+            </div>
+            <div class="detail">
+                <span class="detail-name">Интервьюер</span>
+                <span class="detail-value" id="out-interviewer">Руководитель отдела HR</span>
+            </div>
+
+            <div class="status">
+                ✅ Сервер работает, контейнер запущен через Coolify
+            </div>
+
+            <p class="footer">Версия 1.1 — обновляется автоматически при пуше в GitHub</p>
+        </div>
+    </div>
+
+    <script>
+        // Все изменения происходят прямо в браузере (JavaScript),
+        // без сервера и без базы данных — это просто демо-страница.
+        document.getElementById('inviteForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            document.getElementById('out-position').textContent = document.getElementById('position').value;
+            document.getElementById('out-datetime').textContent = document.getElementById('datetime').value;
+            document.getElementById('out-format').textContent = document.getElementById('format').value;
+            document.getElementById('out-duration').textContent = document.getElementById('duration').value;
+            document.getElementById('out-interviewer').textContent = document.getElementById('interviewer').value;
+        });
+    </script>
+</body>
+</html>
